@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AtmApp.DOMAIN
+namespace AtmApp.DATA.Enums
 {
-    public class AtmService
-    {   
+    public enum AccountType
+    {
+        Savings,
+        Current
     }
 }

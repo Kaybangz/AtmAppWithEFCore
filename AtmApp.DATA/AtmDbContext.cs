@@ -8,7 +8,7 @@ namespace AtmApp.DATA
         public AtmDbContext(DbContextOptions<AtmDbContext> options) : base(options)
         {}
 
-        public void OnModelCreating(ModelBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
         }
