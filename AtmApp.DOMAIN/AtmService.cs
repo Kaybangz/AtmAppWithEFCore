@@ -1,17 +1,31 @@
-﻿using AtmApp.DOMAIN.Interface;
+﻿using AtmApp.DATA;
+using AtmApp.DATA.Entities;
+using AtmApp.DOMAIN.Interface;
+using AtmApp.DOMAIN.Utils;
+using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace AtmApp.DOMAIN
 {
     public class AtmService : IAtmService
     {
-        public void CreateAccount()
+        private AtmDbContext _dbContext { get; set; } = DbContextClass.GetDbContext();
+        public void CreateAccount(Customer customer)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _dbContext.Customers.Add(customer);
+                var msg = _dbContext.SaveChanges() > 0 ? "Your account has been created successfully" : "Account creation failed";
+
+                Console.WriteLine("\n************************************");
+                Console.WriteLine(msg);
+                Console.WriteLine("************************************\n");
+            }
+            catch
+            {
+                throw new Exception("Something went wrong...");
+            }
         }
 
         public void Deposit(decimal amount)

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AtmApp.DATA.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace AtmApp.DOMAIN.Interface
 {
     public interface IAtmService
     {
-        void CreateAccount();
+        void CreateAccount(Customer customer);
         void Deposit(decimal amount);
         void Withdraw(decimal amount);
         void Transfer(int Id, decimal amount);
