@@ -1,6 +1,6 @@
 ﻿using AtmApp.DATA.Enums;
 using System;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AtmApp.DATA.Entities
 {
@@ -8,6 +8,8 @@ namespace AtmApp.DATA.Entities
     {
         public int Id { get; set; }
         public TransactionType TransactionType { get; set; }
+
+        [Column(TypeName = "decimal(15, 2)")]
         public decimal Amount { get; set; }
         public DateTime Date { get; set; }
 

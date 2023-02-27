@@ -1,24 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using System;
+using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace AtmApp.DATA.Entities
 {
     public class Transfer
     {
         public int Id { get; set; }
+
+        [Column(TypeName = "decimal(15, 2)")]
         public decimal Amount { get; set; }
         public DateTime Date { get; set; }
 
 
-        public int SenderId { get; set; }
         public Customer Sender { get; set; } = null!;
+        public int? SenderId { get; set; }
 
 
-
-        public int ReceiverId { get; set; }
         public Customer Receiver { get; set; } = null!;
+        public int? ReceiverId { get; set; }
+        
     }
 }

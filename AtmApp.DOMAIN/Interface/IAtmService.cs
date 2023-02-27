@@ -9,8 +9,9 @@ namespace AtmApp.DOMAIN.Interface
     public interface IAtmService
     {
         void CreateAccount();
-        void Withdraw(int amount);
-        void Transfer();
-        void ViewAccountDetails();
+        void Deposit(decimal amount);
+        void Withdraw(decimal amount);
+        void Transfer(int Id, decimal amount);
+        void ViewAccountDetails(int Id);
     }
 }
