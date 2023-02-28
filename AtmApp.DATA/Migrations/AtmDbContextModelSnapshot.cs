@@ -48,7 +48,7 @@ namespace AtmApp.DATA.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Customers");
+                    b.ToTable("Customers", (string)null);
                 });
 
             modelBuilder.Entity("AtmApp.DATA.Entities.Transaction", b =>
@@ -75,7 +75,7 @@ namespace AtmApp.DATA.Migrations
 
                     b.HasIndex("CustomerId");
 
-                    b.ToTable("Transactions");
+                    b.ToTable("Transactions", (string)null);
                 });
 
             modelBuilder.Entity("AtmApp.DATA.Entities.Transfer", b =>
@@ -104,7 +104,7 @@ namespace AtmApp.DATA.Migrations
 
                     b.HasIndex("SenderId");
 
-                    b.ToTable("Transfers");
+                    b.ToTable("Transfers", (string)null);
                 });
 
             modelBuilder.Entity("AtmApp.DATA.Entities.Transaction", b =>

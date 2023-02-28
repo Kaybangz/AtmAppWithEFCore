@@ -5,9 +5,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AtmApp.DATA.Entities
 {
+    [Table("Transfer")]
     public class Transfer
     {
-        public int Id { get; set; }
+        [Key]
+        public int TransferId { get; set; }
 
         [Column(TypeName = "decimal(15, 2)")]
         public decimal Amount { get; set; }

@@ -16,6 +16,7 @@ namespace AtmApp.DOMAIN
             try
             {
                 _dbContext.Customers.Add(customer);
+
                 var msg = _dbContext.SaveChanges() > 0 ? "Your account has been created successfully" : "Account creation failed";
 
                 Console.WriteLine("\n************************************");
