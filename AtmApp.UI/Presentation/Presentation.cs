@@ -2,14 +2,18 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
+using AtmApp.DATA.Entities;
+using AtmApp.DOMAIN.Utils;
+using AtmApp.DOMAIN;
 
 namespace AtmApp.UI.Presentation
 {
-    public class Presentation
+    public class PresentationClass
     {
-        public void CreateAccount()
+
+        public AtmService atmService { get; set; } = new AtmService();
+        public static void CreateAccount()
         {
             try
             {
@@ -20,19 +24,27 @@ namespace AtmApp.UI.Presentation
                     Console.WriteLine("Enter your full name: ");
                     string fullname = Console.ReadLine();
 
+                    
+
                     Console.WriteLine("Choose a pin: ");
                     int pin = int.Parse(Console.ReadLine());
+
+                    Console.WriteLine();
 
                     Console.WriteLine("Confirm pin: ");
                     int confirmPin = int.Parse(Console.ReadLine());
 
-                    if(pin != confirmPin)
+                   
+
+                    if (pin != confirmPin)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nBoth pins do not match!\n");
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
                     }
+
+       
 
                     Console.WriteLine("Select account type: ");
                     Console.WriteLine("Press 1 for Savings || Press 2 for Current");
@@ -41,18 +53,29 @@ namespace AtmApp.UI.Presentation
 
                     AccountType accountType;
 
+
                     if (accountTypeSelect == 1) accountType = AccountType.Savings;
                     else if (accountTypeSelect == 2) accountType = AccountType.Current;
                     else 
                     {
                         Console.WriteLine("\nInvalid input...\n");
                         break;
-                    } 
+                    }
 
 
+                    Console.WriteLine();
 
+                    //Customer customer = new Customer
+                    //{
+                    //    Name = fullname,
+                    //    Pin = pin,
+                    //    AccountNumber = RandomNumberGenerator.Generate(10),
+                    //    AccountType = accountType,
+                    //    Balance = 0,
+                    //};
 
-
+                    //AtmService atm = new AtmService();
+                    //atm.CreateAccount(customer);
 
                     success = true;
                 }
@@ -60,8 +83,8 @@ namespace AtmApp.UI.Presentation
             }
             catch(Exception ex)
             {
-                if (ex is FormatException) throw new FormatException($"Incorrect format || Error message: {ex.Message}");
-                if (ex is NullReferenceException) throw new NullReferenceException($"Cannot have null values || Error message: {ex.Message}");
+                if (ex is FormatException) Console.WriteLine($"Incorrect format || Error message: {ex.Message}");
+                //7386551865
             }
         }
     }

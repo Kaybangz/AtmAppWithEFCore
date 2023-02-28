@@ -4,6 +4,7 @@ using AtmApp.DATA;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AtmApp.DATA.Migrations
 {
     [DbContext(typeof(AtmDbContext))]
-    partial class AtmDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230228191825_EntitiesAnnotation")]
+    partial class EntitiesAnnotation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,23 +42,14 @@ namespace AtmApp.DATA.Migrations
                     b.Property<decimal>("Balance")
                         .HasColumnType("decimal(15,2)");
 
-                    b.Property<string>("Firstname")
+                    b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Lastname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Middlename")
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(15)");
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("nvarchar(50)");
 
                     b.Property<int>("Pin")
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("int(5)");
 
                     b.HasKey("CustomerId");
 

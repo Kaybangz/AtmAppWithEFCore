@@ -13,6 +13,12 @@ namespace AtmApp.DATA
         public DbSet<Transaction> Transactions { get; set; } = null!;
         public DbSet<Transfer> Transfers { get; set; } = null!;
 
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+
+        }
+
         
     }
 }

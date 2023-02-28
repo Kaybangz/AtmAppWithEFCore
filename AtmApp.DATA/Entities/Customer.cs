@@ -8,16 +8,26 @@ namespace AtmApp.DATA.Entities
     [Table("Customer")]
     public class Customer
     {
+        [Key]
         public int CustomerId { get; set; }
 
-        [Column("nvarchar(50)")]
-        public string Name { get; set; } = null!;
+        [Column(TypeName = "nvarchar(20)")]
+        public string Firstname { get; set; } = null!;
 
-        [Column("int(5)")]
+        [Column(TypeName = "nvarchar(20)")]
+        public string? Middlename { get; set; }
+
+        [Column(TypeName = "nvarchar(20)")]
+        public string Lastname { get; set; } = null!;
+
+        [Column(TypeName = "nvarchar(15)")]
+        public string PhoneNumber { get; set; } = null!;
+
+        [Column(TypeName = "int")]
         public int Pin { get; set; }
 
-        [Column(TypeName = "bigint(15)")]
-        public long AccountNumber { get; set; }
+        [Column(TypeName = "nvarchar(15)")]
+        public string AccountNumber { get; set; } = null!;
         public AccountType AccountType { get; set; }
 
         [Column(TypeName = "decimal(15, 2)")]
