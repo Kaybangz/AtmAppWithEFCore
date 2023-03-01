@@ -6,6 +6,7 @@ using System;
 using AtmApp.DATA.Entities;
 using AtmApp.DOMAIN.Utils;
 using AtmApp.DOMAIN;
+using AtmApp.DOMAIN.Exceptions;
 
 namespace AtmApp.UI.Presentation
 {
@@ -21,20 +22,12 @@ namespace AtmApp.UI.Presentation
 
                 do
                 {
-                    Console.WriteLine("Enter your full name: ");
-                    string fullname = Console.ReadLine();
-
-                    
-
-                    Console.WriteLine("Choose a pin: ");
+                    Console.WriteLine("Choose a pin for your account*: ");
                     int pin = int.Parse(Console.ReadLine());
-
-                    Console.WriteLine();
 
                     Console.WriteLine("Confirm pin: ");
                     int confirmPin = int.Parse(Console.ReadLine());
 
-                   
 
                     if (pin != confirmPin)
                     {
@@ -44,8 +37,30 @@ namespace AtmApp.UI.Presentation
                         break;
                     }
 
-       
 
+                    Console.WriteLine("Enter your first name*: ");
+                    string firstname = Console.ReadLine();
+
+                    ValidateName.ValidateInput(firstname);
+
+
+                    Console.WriteLine("Enter your middle name: ");
+                    string middlename = Console.ReadLine();
+
+
+                    Console.WriteLine("Enter your last name*: ");
+                    string lastname = Console.ReadLine();
+
+                    ValidateName.ValidateInput(lastname);
+
+
+                    Console.WriteLine("Enter mobile number*:");
+                    long phonenumber = Convert.ToInt32(Console.ReadLine());
+
+                    ValidateNumber.ValidateInput(phonenumber.ToString());
+
+       
+                    AccountTypeLabel:
                     Console.WriteLine("Select account type: ");
                     Console.WriteLine("Press 1 for Savings || Press 2 for Current");
 
@@ -58,33 +73,41 @@ namespace AtmApp.UI.Presentation
                     else if (accountTypeSelect == 2) accountType = AccountType.Current;
                     else 
                     {
+                        Console.ForegroundColor = ConsoleColor.Red;
                         Console.WriteLine("\nInvalid input...\n");
-                        break;
+                        Console.ForegroundColor = ConsoleColor.White;
+                        goto AccountTypeLabel;
                     }
 
 
                     Console.WriteLine();
 
-                    //Customer customer = new Customer
-                    //{
-                    //    Name = fullname,
-                    //    Pin = pin,
-                    //    AccountNumber = RandomNumberGenerator.Generate(10),
-                    //    AccountType = accountType,
-                    //    Balance = 0,
-                    //};
+                    Customer customer = new Customer
+                    {
+                        Firstname = firstname,
+                        Middlename = middlename,
+                        Lastname = lastname,
+                        PhoneNumber = phonenumber.ToString(),
+                        Pin = pin,
+                        AccountNumber = RandomNumberGenerator.Generate(10),
+                        AccountType = accountType,
+                        Balance = 0,
+                    };
 
-                    //AtmService atm = new AtmService();
-                    //atm.CreateAccount(customer);
+                    AtmService atm = new AtmService();
+                    atm.CreateAccount(customer);
 
                     success = true;
                 }
                 while(success == false);
             }
-            catch(Exception ex)
+            catch(FormatException ex)
             {
-                if (ex is FormatException) Console.WriteLine($"Incorrect format || Error message: {ex.Message}");
-                //7386551865
+                Console.WriteLine($"Incorrect format || Error message: {ex.Message}");
+            }
+            catch(InvalidFormatTypeException ex)
+            {
+                Console.WriteLine(ex.Message);
             }
         }
     }
